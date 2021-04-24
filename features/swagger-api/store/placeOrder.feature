@@ -1,7 +1,7 @@
 # encoding: UTF-8
 # language: ru
 
-
+@all @placeOrder
 Функционал: Создание заказа на животное. https://petstore.swagger.io/#/store/placeOrder
 
 

@@ -73,16 +73,16 @@ When(/^Отправил GET запрос на URL `(.*)` c query парамет�
 end
 
 When(/^Создал животное$/) do
-  step "Отправил POST запрос для создания животного на URL `https://petstore.swagger.io/v2/pet` c параметрами:
-          | key           | value    |
-          | id            |          |
-          | category id   |          |
-          | category name |          |
-          | name          | ipr name |
-          | photoUrls     | ipr url  |
-          | tags id       |          |
-          | tags name     |          |
-          | status        |          |"
+  steps %{* Отправил POST запрос для создания животного на URL `https://petstore.swagger.io/v2/pet` c параметрами:
+            | key           | value    |
+            | id            |          |
+            | category id   |          |
+            | category name |          |
+            | name          | ipr name |
+            | photoUrls     | ipr url  |
+            | tags id       |          |
+            | tags name     |          |
+            | status        |          |}
 end
 
 Then(/^Удалил животное по сохраненному id$/) do
@@ -98,7 +98,7 @@ Then(/^Распарсил JSON ответ$/) do
 end
 
 Then(/^Запомнил id созданного или измененного животного$/) do
-  @saved_pet_id = @response[:id]
+  @saved_pet_id = @response["id"].to_i
 end
 
 Then(/^Вывод JSON ответа$/) do

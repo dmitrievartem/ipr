@@ -1,7 +1,7 @@
 # encoding: UTF-8
 # language: ru
 
-
+@all @deletePet
 Функционал: Удаление животного по id. https://petstore.swagger.io/#/pet/deletePet
 
 

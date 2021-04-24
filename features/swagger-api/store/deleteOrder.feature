@@ -1,7 +1,7 @@
 # encoding: UTF-8
 # language: ru
 
-
+@all @deleteOrder
 Функционал: Удаление заказа на животное. https://petstore.swagger.io/#/store/deleteOrder
 
 

@@ -1,7 +1,7 @@
 # encoding: UTF-8
 # language: ru
 
-
+@all @findPetByStatus
 Функционал: Поиск животных по статусу. https://petstore.swagger.io/#/pet/findPetsByStatus
 
 
