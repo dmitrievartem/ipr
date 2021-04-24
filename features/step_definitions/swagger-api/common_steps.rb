@@ -1,4 +1,4 @@
-When(/^Отправил POST запрос на URL `(.*)` c параметрами:$/) do |url, table|
+When(/^Отправил POST запрос для создания животного на URL `(.*)` c параметрами:$/) do |url, table|
   headers_hash = { 'Content-Type' => 'application/json', :Accept => 'application/json' }
   parameters = table.rows.flatten
   payload_hash = {
@@ -20,16 +20,16 @@ When(/^Отправил POST запрос на URL `(.*)` c параметрам
     "status": "#{parameters[15]}"
   }
   payload_hash = payload_hash.to_json
-  log_request(url, payload_hash, headers_hash)
+
   @response = send_post(url, payload_hash, headers_hash)
-  log_response(@response)
+
 end
 
 When(/^Отправил PUT запрос на URL `(.*)` и параметрами:$/) do |url, table|
   headers_hash = { 'Content-Type' => 'application/json', :Accept => 'application/json' }
   parameters = table.rows.flatten
   payload_hash = {
-    "id": "#{@saved_id}.to_i",
+    "id": "#{parameters[1]}".to_i,
     "category": {
       "id": "#{parameters[3]}".to_i,
       "name": "#{parameters[5]}"
@@ -47,18 +47,16 @@ When(/^Отправил PUT запрос на URL `(.*)` и параметрам
     "status": "#{parameters[15]}"
   }
   payload_hash = payload_hash.to_json
-  log_request(url, payload_hash, headers_hash)
+
   @response = send_put(url, payload_hash, headers_hash)
-  log_response(@response)
+
 end
 
 When(/^Отправил DELETE запрос на URL `(.*)` c path параметром `(.*)`$/) do |url, parameter|
   headers_hash = { Accept: 'application/json' }
   url = url.concat('/' + parameter)
   p url
-  log_request(url, headers_hash)
   @response = send_delete(url, headers_hash)
-  log_response(@response)
 end
 
 When(/^Отправил GET запрос на URL `(.*)` c query параметрами:$/) do |url, table|
@@ -75,7 +73,7 @@ When(/^Отправил GET запрос на URL `(.*)` c query парамет�
 end
 
 When(/^Создал животное$/) do
-  step "Отправил POST запрос на URL `https://petstore.swagger.io/v2/pet` c параметрами:
+  step "Отправил POST запрос для создания животного на URL `https://petstore.swagger.io/v2/pet` c параметрами:
           | key           | value    |
           | id            |          |
           | category id   |          |
@@ -88,7 +86,7 @@ When(/^Создал животное$/) do
 end
 
 Then(/^Удалил животное по сохраненному id$/) do
-  step "Отправил DELETE запрос на URL `https://petstore.swagger.io/v2/pet` c path параметром `#{@saved_id}`"
+  step "Отправил DELETE запрос на URL `https://petstore.swagger.io/v2/pet` c path параметром `#{@saved_pet_id}`"
 end
 
 Then(/^Убедился, что код REST ответа = `(.*)`$/) do |expected_code|
@@ -100,7 +98,7 @@ Then(/^Распарсил JSON ответ$/) do
 end
 
 Then(/^Запомнил id созданного или измененного животного$/) do
-  @saved_id = @response[:id]
+  @saved_pet_id = @response[:id]
 end
 
 Then(/^Вывод JSON ответа$/) do
