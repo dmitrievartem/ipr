@@ -26,12 +26,25 @@ When(/^Отправил POST запрос на URL `(.*)` c параметрам
 end
 
 When(/^Отправил DELETE запрос на URL `(.*)` c path параметром `(.*)`$/) do |url, parameter|
-  headers_hash = { :Accept => 'application/json' }
+  headers_hash = { Accept: 'application/json' }
   url = url.concat('/' + parameter)
   p url
   log_request(url, headers_hash)
   @response = send_delete(url, headers_hash)
   log_response(@response)
+end
+
+When(/^Делаю GET запрос на URL `(.*)` c query параметрами:$/) do |url, table|
+  headers_hash = { Accept: 'application/json' }
+  url.concat('?')
+  table.hashes.each do |param|
+    if url.end_with?('?')
+      url.concat(param[:key], '=', param[:value])
+    else
+      url.concat('&', param[:key], '=', param[:value])
+    end
+  end
+  @response = send_get url, headers_hash
 end
 
 Then(/^Убедился, что код REST ответа = `(.*)`$/) do |expected_code|
