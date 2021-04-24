@@ -2,7 +2,7 @@
 # language: ru
 
 
-Функционал: Удаление животного по id. https://petstore.swagger.io/#/pet/addPet
+Функционал: Удаление животного по id. https://petstore.swagger.io/#/pet/deletePet
 
 
   Сценарий: Удаление созданного животного по id
