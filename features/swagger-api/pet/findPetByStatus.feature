@@ -6,7 +6,7 @@
 
 
   Структура сценария: Запрос на поиск животных по статусу возвращет список животных с указанным статусом
-    * Делаю GET запрос на URL `https://petstore.swagger.io/v2/pet/findByStatus` c query параметрами:
+    * Отправил GET запрос на URL `https://petstore.swagger.io/v2/pet/findByStatus` c query параметрами:
       | key    | value    |
       | status | <status> |
     * Убедился, что код REST ответа = `200`
@@ -21,7 +21,7 @@
 
 
   Структура сценария: Запрос на поиск животных по невалидному статусу возвращет код ответа 400
-    * Делаю GET запрос на URL `https://petstore.swagger.io/v2/pet/findByStatus` c query параметрами:
+    * Отправил GET запрос на URL `https://petstore.swagger.io/v2/pet/findByStatus` c query параметрами:
       | key    | value    |
       | status | <status> |
     * Убедился, что код REST ответа = `400`
