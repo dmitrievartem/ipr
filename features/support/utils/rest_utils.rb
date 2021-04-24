@@ -33,3 +33,17 @@ def send_delete(path, headers = {})
     end
   end
 end
+
+def log_request(url, payload, headers)
+  p 'ПАРАМЕТРЫ ЗАПРОСА:'
+  p url
+  p payload
+  p headers
+end
+
+def log_response(response)
+  p 'ПАРАМЕТРЫ ОТВЕТА:'
+  p "response_code = #{response.code} "
+  pp "response_head = #{response.headers} "
+  pp "response_body = #{JSON.parse(response.body)} "
+end
