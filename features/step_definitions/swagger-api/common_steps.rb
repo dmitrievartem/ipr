@@ -19,10 +19,18 @@ When(/^Отправил POST запрос на URL `(.*)` c параметрам
     ],
     "status": "#{parameters[15]}"
   }
-  @request_hash = payload_hash
   payload_hash = payload_hash.to_json
   log_request(url, payload_hash, headers_hash)
   @response = send_post(url, payload_hash, headers_hash)
+  log_response(@response)
+end
+
+When(/^Отправил DELETE запрос на URL `(.*)` c path параметром `(.*)`$/) do |url, parameter|
+  headers_hash = { :Accept => 'application/json' }
+  url = url.concat('/' + parameter)
+  p url
+  log_request(url, headers_hash)
+  @response = send_delete(url, headers_hash)
   log_response(@response)
 end
 
