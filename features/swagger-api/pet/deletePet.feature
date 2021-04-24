@@ -6,7 +6,7 @@
 
 
   Сценарий: Удаление созданного животного по id
-    * Отправил POST запрос на URL `https://petstore.swagger.io/v2/pet` c параметрами:
+    * Отправил POST запрос для создания животного на URL `https://petstore.swagger.io/v2/pet` c параметрами:
       | key           | value    |
       | id            | 45479754 |
       | category id   |          |
