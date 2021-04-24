@@ -11,7 +11,6 @@ When(/^Отправил POST запрос для создания заказа �
       eval "payload_hash#{i[:key]} = '#{i[:value]}'"
     end
   end
-  pp payload_hash
   payload_hash = payload_hash.to_json
   @response = send_post(url, payload_hash, headers_hash)
 end

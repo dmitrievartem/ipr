@@ -20,9 +20,7 @@ When(/^Отправил POST запрос для создания животно
     "status": "#{parameters[15]}"
   }
   payload_hash = payload_hash.to_json
-
   @response = send_post(url, payload_hash, headers_hash)
-
 end
 
 When(/^Отправил PUT запрос на URL `(.*)` и параметрами:$/) do |url, table|
@@ -47,15 +45,12 @@ When(/^Отправил PUT запрос на URL `(.*)` и параметрам
     "status": "#{parameters[15]}"
   }
   payload_hash = payload_hash.to_json
-
   @response = send_put(url, payload_hash, headers_hash)
-
 end
 
 When(/^Отправил DELETE запрос на URL `(.*)` c path параметром `(.*)`$/) do |url, parameter|
   headers_hash = { Accept: 'application/json' }
   url = url.concat('/' + parameter)
-  p url
   @response = send_delete(url, headers_hash)
 end
 
@@ -102,5 +97,5 @@ Then(/^Запомнил id созданного или измененного ж
 end
 
 Then(/^Вывод JSON ответа$/) do
-  pp @response
+  pp @response.to_s
 end
