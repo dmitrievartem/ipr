@@ -1,5 +1,6 @@
 def send_get(url, headers = {})
-  log_request(url, headers)
+  @request = { url: url, headers: headers, payload: {} }
+  log_request(@request)
   RestClient::Request.execute(method: :get, url: url, headers: headers) do |response, _request, _result|
     @response = response
     log_response(response)
@@ -7,7 +8,8 @@ def send_get(url, headers = {})
 end
 
 def send_post(url, payload, headers = {})
-  log_request(url, headers, payload)
+  @request = {url: url, headers: headers, payload: payload}
+  log_request(@request)
   RestClient::Request.execute(method: :post, url: url, headers: headers, payload: payload) do |response, _code|
     @response = response
     log_response(response)
@@ -16,7 +18,8 @@ def send_post(url, payload, headers = {})
 end
 
 def send_put(url, payload, headers = {})
-  log_request(url, headers, payload)
+  @request = {url: url, headers: headers, payload: payload}
+  log_request(@request)
   RestClient::Request.execute(method: :put, url: url, headers: headers, payload: payload) do |response, _code|
     @response = response
     log_response(response)
@@ -25,30 +28,39 @@ def send_put(url, payload, headers = {})
 end
 
 def send_delete(url, headers = {})
-  log_request(url, headers)
+  @request = {url: url, headers: headers, payload: {} }
+  log_request(@request)
   RestClient::Request.execute(method: :delete, url: url, headers: headers) do |response, _request, _result|
     @response = response
     log_response(response)
   end
 end
 
-def log_request(url, headers, payload = {})
+def log_request(request)
   Kernel.puts 'REQUEST LOG'
   Kernel.puts 'URL: '
-  pp url
+  pp request[:url]
   Kernel.puts 'PAYLOAD: '
-  pp payload
+  pp request[:payload]
   Kernel.puts 'HEADERS: '
-  pp headers
+  pp request[:headers]
+  returned_value = 'REQUEST LOG' + "\n" + 'URL: ' + request[:url].to_s + "\n"
+  returned_value += 'PAYLOAD: ' + request[:payload].to_s + "\n"
+  returned_value += 'HEADERS: ' + request[:headers].to_s + "\n"
+  returned_value
 end
 
-def log_response(response)
+def log_response(response = {})
   Kernel.puts 'RESPONSE LOG'
   Kernel.puts 'CODE: '
   pp response.code
   Kernel.puts 'HEADERS: '
   pp response.headers
   Kernel.puts 'BODY: '
-  response =  JSON.parse response
-  pp response
+  json_response =  JSON.parse response
+  pp json_response
+  returned_value = 'RESPONSE LOG' + "\n" + 'CODE: ' + response.code.to_s + "\n"
+  returned_value += 'HEADERS: ' + response.headers.to_s + "\n"
+  returned_value += 'BODY: ' + json_response.to_s + "\n"
+  returned_value
 end

@@ -1,2 +1,5 @@
 require 'rest-client'
 require 'selenium-webdriver'
+require 'time'
+require 'base64'
+require 'cucumber'
