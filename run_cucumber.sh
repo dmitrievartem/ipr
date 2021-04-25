@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
-echo "bundle exec cucumber"
+bundler install
+bundle install
+bundle
+bundle exec cucumber
 
 #printenvgi
