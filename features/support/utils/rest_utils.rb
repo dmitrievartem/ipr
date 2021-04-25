@@ -3,12 +3,6 @@ def send_get(url, headers = {})
   RestClient::Request.execute(method: :get, url: url, headers: headers) do |response, _request, _result|
     @response = response
     log_response(response)
-    case response.code
-    when 301, 302, 307
-      @response = response.follow_redirection
-    else
-      @response = response
-    end
   end
 end
 
@@ -35,12 +29,6 @@ def send_delete(url, headers = {})
   RestClient::Request.execute(method: :delete, url: url, headers: headers) do |response, _request, _result|
     @response = response
     log_response(response)
-    case response.code
-    when 301, 302, 307
-      @response = response.follow_redirection
-    else
-      @response = response
-    end
   end
 end
 
