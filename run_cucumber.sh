@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-bundle exec cucumber
+echo 'bundle exec cucumber'
 
 #printenvgi
