@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+cd
 bundler install
 bundle install
 bundle
