@@ -18,6 +18,6 @@ export LANG=C.UTF-8 && locale
 
 bundler install
 
-bundle exec cucumber --tags @updatePet --publish-quiet -f pretty -f json --out report_files/report.json
+bundle exec cucumber --tags ${TAGS} --publish-quiet -f pretty -f json --out report_files/report.json
 
 #printenv
