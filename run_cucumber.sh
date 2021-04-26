@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
 echo 'something'
+
+if [ "${TAGS}" = "true" ]; then
+echo "MY_PARAMETER = ${TAGS}"
+else
+echo "MY_PARAMETER = ${TAGS}"
+fi
+
 export LANG=C.UTF-8 && locale
 ruby -v
 pwd
 bundler install
 
 printenv
-
-if [ "${TAGS}" ]; then
-echo "MY_PARAMETER = ${TAGS}"
-else
-echo "MY_PARAMETER = ${TAGS}"
-fi
 
 echo "${TAGS}"
 echo "!!!!!!!!!!!!!!!!!!!"
