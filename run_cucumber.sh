@@ -6,6 +6,8 @@ ruby -v
 pwd
 bundler install
 
+printenv
+
 if [ "${TAGS}" ]; then
 echo "MY_PARAMETER = ${TAGS}"
 else
