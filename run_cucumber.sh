@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+TAGS=$1
 echo 'something'
 echo ${TAGS}
 if [ "${TAGS}" = "true" ]; then
