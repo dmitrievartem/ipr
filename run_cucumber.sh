@@ -2,7 +2,7 @@
 
 echo 'something'
 
-echo $1
+echo "$1"
 echo "${TAGS}"
 if [ "${TAGS}" = "true" ]; then
 echo "MY_PARAMETER = ${TAGS}"
