@@ -1,4 +1,6 @@
 Before('@ui') do
+  p "${TAGS}"
+  p ENV['TAGS']
   # Указываю пути до портативного браузера и хромдрайвера
   Selenium::WebDriver::Chrome::Service.driver_path = 'features/support/GoogleChromePortable/chromedriver.exe'
   path_to_browser = File.join(File.expand_path(Dir.pwd), 'features/support/GoogleChromePortable/App/Chrome-bin/chrome.exe')
