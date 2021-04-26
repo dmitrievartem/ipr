@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-TAGS=$1
 echo 'something'
-echo ${TAGS}
+
+echo $1
+echo "${TAGS}"
 if [ "${TAGS}" = "true" ]; then
 echo "MY_PARAMETER = ${TAGS}"
 else
