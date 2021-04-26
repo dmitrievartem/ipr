@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo 'something'
-
+echo ${TAGS}
 if [ "${TAGS}" = "true" ]; then
 echo "MY_PARAMETER = ${TAGS}"
 else
