@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+TAGS=$1
 echo 'something'
 export LANG=C.UTF-8 && locale
 ruby -v
