@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-cd
+echo 'something'
+export LANG=C.UTF-8 && locale
+ruby -v
+pwd
 bundler install
-bundle install
-bundle
-bundle exec cucumber
 
-#printenvgi
+bundle exec cucumber --publish-quiet -f pretty -f json --out report_files/report.json -t TAGS
+
+#printenv
