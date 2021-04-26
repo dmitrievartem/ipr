@@ -3,9 +3,15 @@
 echo 'something'
 
 if [ "${TAGS}" = "true" ]; then
-echo "MY_PARAMETER = ${TAGS}"
+echo "TAGS = ${TAGS}"
 else
-echo "MY_PARAMETER = ${TAGS}"
+echo "TAGS = ${TAGS}"
+fi
+
+if [ "${DbLogEnable}" = "true" ]; then
+echo "DbLogEnable = ${DbLogEnable}"
+else
+echo "DbLogEnable = ${DbLogEnable}"
 fi
 
 export LANG=C.UTF-8 && locale
