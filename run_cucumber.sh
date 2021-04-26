@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-TAGS=$1
 echo 'something'
 export LANG=C.UTF-8 && locale
 ruby -v
@@ -14,7 +13,7 @@ echo "MY_PARAMETER = ${TAGS}"
 fi
 
 echo "${TAGS}"
-echo"!!!!!!!!!!!!!!!!!!!"
+echo "!!!!!!!!!!!!!!!!!!!"
 bundle exec cucumber --publish-quiet -f pretty -f json --out report_files/report.json --tags '${TAGS}'
 
 #printenv
