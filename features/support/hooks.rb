@@ -51,7 +51,7 @@ AfterStep do |_result, step|
   if ENV['DbLogEnable'] == 'true'
     p "INNNN111111111111111111111111"
     error = ''
-    @connection.query("INSERT INTO AutotestLog (log_time, scenario, step, result, error) VALUES ('#{Time.now}', '#{@scenario_name}', '#{step.text}', 'passed', #{error});")
+    @connection.query("INSERT INTO AutotestLog (log_time, scenario, step, result, error) VALUES ('#{Time.now}', '#{@scenario_name}', '#{step.text}', 'passed', '#{error}');")
   end
 end
 
@@ -63,7 +63,7 @@ After('@all') do |scenario|
     arr_of_steps = scenario.test_steps.map(&:text).delete_if { |item| item.include? 'hook' }
     if ENV['DbLogEnable'] == 'true'
       p "INNN22222222222222222222222222222222222"
-      @connection.query("INSERT INTO AutotestLog (log_time, scenario, step, result, error) VALUES ('#{Time.now}', '#{@scenario_name}', '#{arr_of_steps[@counter]}', 'failed', #{error});")
+      @connection.query("INSERT INTO AutotestLog (log_time, scenario, step, result, error) VALUES ('#{Time.now}', '#{@scenario_name}', '#{arr_of_steps[@counter]}', 'failed', '#{error}');")
     end
   end
 end
