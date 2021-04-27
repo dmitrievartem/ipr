@@ -1,6 +1,6 @@
 Before('@ui') do
   # Указываю пути до портативного браузера и хромдрайвера
-  Selenium::WebDriver::Chrome::Service.driver_path = 'features/support/GoogleChromePortable/chromedriver.exe'
+  Selenium::WebDriver::Chrome::Service.driver_path = 'chromedriver.exe'
   if ENV['ABSOLUTE_PATH']
     path_to_browser = 'D:\Ruby\RubyMine 2020.3.1\RubymineProjects\ipr\features\support\GoogleChromePortable\App\Chrome-bin\chrome.exe'
   else
