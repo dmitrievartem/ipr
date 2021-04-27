@@ -85,6 +85,7 @@ Then(/^Удалил животное по сохраненному id$/) do
 end
 
 Then(/^Убедился, что код REST ответа = `(.*)`$/) do |expected_code|
+
   expect(@response.code).to eq(expected_code.to_i)
 end
 
