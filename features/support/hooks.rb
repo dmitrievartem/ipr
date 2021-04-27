@@ -57,9 +57,11 @@ end
 After('@all') do |scenario|
   p "?????????????????????????????????????????????????"
   if scenario.failed?
+    p "INNNNNNNNNNNNNNNNNNNNNNN"
     error = scenario.exception
     arr_of_steps = scenario.test_steps.map(&:text).delete_if { |item| item.include? 'hook' }
     if ENV['DbLogEnable'] == 'true'
+      p "INNN22222222222222222222222222222222222"
       @connection.query("INSERT INTO AutotestLog (log_time, scenario, step, result, error) VALUES ('#{Time.now}', '#{@scenario_name}', '#{arr_of_steps[@counter]}', 'failed', #{error});")
     end
   end
