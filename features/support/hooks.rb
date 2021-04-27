@@ -17,7 +17,20 @@ Before('@ui') do
   @browser.manage.timeouts.implicit_wait = 5
 end
 
+Before do |scenario|
+  @counter = 0
+  @scenario_name = scenario.name
+  if ENV['DbLogEnable'] == 'true'
+    @connection = Mysql2::Client.new(host:     "localhost",
+                                     username: "dmitrievas",
+                                     password: "art.KS2733",
+                                     database: "ipr",
+                                     port:     3306)
+  end
+end
+
 After('@ui') do |scenario|
+  puts scenario.status.inspect
   if scenario.failed?
     add_screenshot
     add_browser_logs
@@ -28,6 +41,26 @@ end
 After('not @ui') do |scenario|
   if scenario.failed?
     add_rest_logs
+  end
+end
+
+# Cucumber::Core::Test::Result::Passed:
+AfterStep do |_result, step|
+  @counter += 1
+  @step_name = step.text
+  if ENV['DbLogEnable'] == 'true'
+    @connection.query("INSERT INTO AutotestLog (log_time, scenario, step, result, error) VALUES ('#{Time.now}', '#{@scenario_name}', '#{step.text}', 'passed', #{error});")
+  end
+end
+
+After('@all') do |scenario|
+  p "?????????????????????????????????????????????????"
+  if scenario.failed?
+    error = scenario.exception
+    arr_of_steps = scenario.test_steps.map(&:text).delete_if { |item| item.include? 'hook' }
+    if ENV['DbLogEnable'] == 'true'
+      @connection.query("INSERT INTO AutotestLog (log_time, scenario, step, result, error) VALUES ('#{Time.now}', '#{@scenario_name}', '#{arr_of_steps[@counter]}', 'failed', #{error});")
+    end
   end
 end
 
