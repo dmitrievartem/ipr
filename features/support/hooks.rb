@@ -1,5 +1,4 @@
 Before('@ui') do
-  # Указываю пути до портативного браузера и хромдрайвера
   Selenium::WebDriver::Chrome::Service.driver_path = 'chromedriver.exe'
   if ENV['ABSOLUTE_PATH']
     path_to_browser = 'D:\Ruby\RubyMine 2020.3.1\RubymineProjects\ipr\features\support\utils\GoogleChromePortable\App\Chrome-bin\chrome.exe'
@@ -8,12 +7,7 @@ Before('@ui') do
   end
   options = Selenium::WebDriver::Chrome::Options.new(binary: path_to_browser)
   @browser = Selenium::WebDriver.for :chrome, options: options
-  # Selenium::WebDriver::Chrome::Service.driver_path = 'chromedriver.exe'
-  # absolute_path = get_filepath('features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe')
-  # options = Selenium::WebDriver::Chrome::Options.new(binary: absolute_path.to_s)
-  # @browser = Selenium::WebDriver.for(:chrome, options: options)
   @browser.manage.window.maximize
-  # Неявное ожидание
   @browser.manage.timeouts.implicit_wait = 5
 end
 
@@ -44,25 +38,20 @@ After('not @ui') do |scenario|
   end
 end
 
-# Cucumber::Core::Test::Result::Passed:
 AfterStep do |_result, step|
   @counter += 1
   @step_name = step.text
   if ENV['DbLogEnable'] == 'true'
-    p "INNNN111111111111111111111111"
     error = ''
     @connection.query("INSERT INTO AutotestLog (log_time, scenario, step, result, error) VALUES ('#{Time.now}', '#{@scenario_name}', '#{step.text}', 'passed', '#{error}');")
   end
 end
 
 After('@all') do |scenario|
-  p "?????????????????????????????????????????????????"
   if scenario.failed?
-    p "INNNNNNNNNNNNNNNNNNNNNNN"
     error = scenario.exception
     arr_of_steps = scenario.test_steps.map(&:text).delete_if { |item| item.include? 'hook' }
     if ENV['DbLogEnable'] == 'true'
-      p "INNN22222222222222222222222222222222222"
       @connection.query("INSERT INTO AutotestLog (log_time, scenario, step, result, error) VALUES ('#{Time.now}', '#{@scenario_name}', '#{arr_of_steps[@counter]}', 'failed', '#{error}');")
     end
   end
