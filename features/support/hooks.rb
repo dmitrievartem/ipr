@@ -1,18 +1,18 @@
 Before('@ui') do
   # Указываю пути до портативного браузера и хромдрайвера
-  # Selenium::WebDriver::Chrome::Service.driver_path = 'features/support/GoogleChromePortable/chromedriver.exe'
-  # if ENV['ABSOLUTE_PATH']
-  #   path_to_browser = 'D:\Ruby\RubyMine 2020.3.1\RubymineProjects\ipr\features\support\GoogleChromePortable\App\Chrome-bin\chrome.exe'
-  # else
-  #   path_to_browser = 'features/support/GoogleChromePortable/App/Chrome-bin/chrome.exe'
-  # end
-  # absolute_path = get_filepath('features/support/GoogleChromePortable/App/Chrome-bin/chrome.exe')
-  # options = Selenium::WebDriver::Chrome::Options.new(binary: absolute_path.to_s)
-  # @browser = Selenium::WebDriver.for :chrome, options: options
-  Selenium::WebDriver::Chrome::Service.driver_path = 'chromedriver.exe'
+  Selenium::WebDriver::Chrome::Service.driver_path = 'features/support/GoogleChromePortable/chromedriver.exe'
+  if ENV['ABSOLUTE_PATH']
+    path_to_browser = 'D:\Ruby\RubyMine 2020.3.1\RubymineProjects\ipr\features\support\GoogleChromePortable\App\Chrome-bin\chrome.exe'
+  else
+    path_to_browser = 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
+  end
   absolute_path = get_filepath('features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe')
   options = Selenium::WebDriver::Chrome::Options.new(binary: absolute_path.to_s)
-  @browser = Selenium::WebDriver.for(:chrome, options: options)
+  @browser = Selenium::WebDriver.for :chrome, options: options
+  # Selenium::WebDriver::Chrome::Service.driver_path = 'chromedriver.exe'
+  # absolute_path = get_filepath('features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe')
+  # options = Selenium::WebDriver::Chrome::Options.new(binary: absolute_path.to_s)
+  # @browser = Selenium::WebDriver.for(:chrome, options: options)
   @browser.manage.window.maximize
   # Неявное ожидание
   @browser.manage.timeouts.implicit_wait = 5
