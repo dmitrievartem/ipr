@@ -49,6 +49,7 @@ AfterStep do |_result, step|
   @counter += 1
   @step_name = step.text
   if ENV['DbLogEnable'] == 'true'
+    error = ''
     @connection.query("INSERT INTO AutotestLog (log_time, scenario, step, result, error) VALUES ('#{Time.now}', '#{@scenario_name}', '#{step.text}', 'passed', #{error});")
   end
 end
