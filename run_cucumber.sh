@@ -19,7 +19,7 @@ export LANG=C.UTF-8 && locale
 bundler install
 
 pwd
-cd features/support/GoogleChromePortable/App/Chrome-bin
+cd features/support/utils/GoogleChromePortable/App/Chrome-bin
 ls -la
 
 
