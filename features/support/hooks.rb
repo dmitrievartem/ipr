@@ -6,8 +6,7 @@ Before('@ui') do
   else
     path_to_browser = 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
   end
-  absolute_path = get_filepath('features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe')
-  options = Selenium::WebDriver::Chrome::Options.new(binary: absolute_path.to_s)
+  options = Selenium::WebDriver::Chrome::Options.new(binary: path_to_browser)
   @browser = Selenium::WebDriver.for :chrome, options: options
   # Selenium::WebDriver::Chrome::Service.driver_path = 'chromedriver.exe'
   # absolute_path = get_filepath('features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe')
