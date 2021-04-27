@@ -7,7 +7,7 @@ Before('@ui') do
   #   path_to_browser = 'features/support/GoogleChromePortable/App/Chrome-bin/chrome.exe'
   # end
   absolute_path = get_filepath('features/support/GoogleChromePortable/App/Chrome-bin/chrome.exe')
-  options = Selenium::WebDriver::Chrome::Options.new(binary: absolute_path)
+  options = Selenium::WebDriver::Chrome::Options.new(binary: absolute_path.to_s)
   @browser = Selenium::WebDriver.for :chrome, options: options
   # Неявное ожидание
   @browser.manage.timeouts.implicit_wait = 5
