@@ -60,7 +60,7 @@ end
 def add_screenshot
   time = Time.now.to_s.gsub! ':', '-'
   time = time.gsub! ' ', '-'
-  file_path = 'report_files/screenshots/screenshot' + time + '.png'
+  file_path = 'report_files/screenshots/screenshots' + time + '.png'
   @browser.save_screenshot(file_path)
   image = open(file_path, 'rb', &:read)
   encoded_image = Base64.encode64(image)

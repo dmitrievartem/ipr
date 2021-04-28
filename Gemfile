@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'cucumber'
+gem 'cucumber', '=3.1.0'
 gem 'rest-client'
 gem 'rspec-expectations'
 gem 'json'

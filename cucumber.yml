@@ -1,1 +1,2 @@
-default: --publish-quiet -f pretty -f json --out report_files/report.json
+default: -f pretty -f json --out report.json -t @ui
+#default: -f pretty --expand -f html -o "report.html"
