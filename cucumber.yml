@@ -1,2 +1,1 @@
 default: -f pretty -f json --out report.json -t @ui
-#default: -f pretty --expand -f html -o "report.html"
