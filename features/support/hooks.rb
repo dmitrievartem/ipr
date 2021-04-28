@@ -64,7 +64,7 @@ def add_screenshot
   @browser.save_screenshot(file_path)
   image = open(file_path, 'rb', &:read)
   encoded_image = Base64.encode64(image)
-  embed(encoded_image, 'image/png')
+  embed(file_path, 'image/png')
 end
 
 def add_browser_logs
