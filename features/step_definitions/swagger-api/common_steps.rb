@@ -124,5 +124,11 @@ When(/^Убедился, что животное в ответе соответ�
   expect(hash_compare).to be true
 end
 
+When(/^Убедился, что животное в ответе НЕ соответствует запросу по сохраненному id$/) do
+  @payload_hash[:id] = @saved_pet_id
+  hash_compare = @payload_hash.deep_transform_keys(&:to_s).eql?(@response)
+  expect(hash_compare).to be false
+end
+
 Then(/^Вывод JSON ответа$/) do
 end
