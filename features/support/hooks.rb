@@ -5,6 +5,8 @@ Before('@ui') do
   else
     path_to_browser = 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
   end
+  # попробовать поменять слэши
+  # ПРОВЕРИТЬ
   options = Selenium::WebDriver::Chrome::Options.new(binary: path_to_browser)
   @browser = Selenium::WebDriver.for :chrome, options: options
   @browser.manage.window.maximize
@@ -24,8 +26,12 @@ Before do |scenario|
 end
 
 After('@ui') do |scenario|
-  puts scenario.status.inspect
   if scenario.failed?
+    #         еСЛИ БРАУЗЕР nil, то не выполнять код
+    # делать отчет если сборка success
+    # запуск по расписанию
+    # Post User
+    # Post list User
     add_screenshot
     add_browser_logs
   end
@@ -62,8 +68,6 @@ def add_screenshot
   time = time.gsub! ' ', '-'
   file_path = 'report_files/screenshots/screenshots' + time + '.png'
   @browser.save_screenshot(file_path)
-  image = open(file_path, 'rb', &:read)
-  encoded_image = Base64.encode64(image)
   embed(file_path, 'image/png')
 end
 

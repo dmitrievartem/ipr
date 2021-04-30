@@ -11,7 +11,7 @@ def send_post(url, payload, headers = {})
   log_request(@request)
   RestClient::Request.execute(method: :post, url: url, headers: headers, payload: payload) do |response|
     @response = response
-    log_response(response)
+    log_response(@response)
   end
   @response
 end
@@ -39,7 +39,7 @@ def log_request(request)
   Kernel.puts 'URL: '
   pp request[:url]
   Kernel.puts 'PAYLOAD: '
-  pp request[:payload]
+  p request[:payload].class
   Kernel.puts 'HEADERS: '
   pp request[:headers]
   returned_value = 'REQUEST LOG' + "\n" + 'URL: ' + request[:url].to_s + "\n"
@@ -55,11 +55,14 @@ def log_response(response = {})
   Kernel.puts 'HEADERS: '
   pp response.headers
   Kernel.puts 'BODY: '
-  pp response.body
   json_response =  JSON.parse response
   pp json_response
   returned_value = 'RESPONSE LOG' + "\n" + 'CODE: ' + response.code.to_s + "\n"
   returned_value += 'HEADERS: ' + response.headers.to_s + "\n"
   returned_value += 'BODY: ' + response.body.to_s + "\n"
   returned_value
+end
+
+def hash_diff(hash1, hash2)
+  hash1.keys.each { |key| puts key if hash1[key] != hash2[key] }
 end

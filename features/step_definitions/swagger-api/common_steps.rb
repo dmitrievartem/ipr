@@ -99,7 +99,7 @@ Then(/^Удалил животное по сохраненному id$/) do
   step "Отправил DELETE запрос на URL `https://petstore.swagger.io/v2/pet` c path параметром `#{@saved_pet_id}`"
 end
 
-Then(/^Убедился, что нет живтоного с сохраненным id$/) do
+Then(/^Убедился, что нет животного с сохраненным id$/) do
   step "Отправил GET запрос на URL `https://petstore.swagger.io/v2/pet` c path параметром: `#{@saved_pet_id}`"
   step "Убедился, что код REST ответа = `404`"
   step "Распарсил JSON ответ"
