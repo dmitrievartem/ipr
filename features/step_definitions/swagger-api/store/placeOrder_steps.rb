@@ -29,3 +29,9 @@ end
 Then(/^Запомнил id созданного заказа$/) do
   @saved_order_id = @response["id"].to_i
 end
+
+When(/^Убедился, что заказ в ответе соответствует запросу по сохраненному id$/) do
+  @payload_hash[:id] = @saved_order_id
+  hash_compare = @payload_hash.deep_transform_keys(&:to_s).eql?(@response)
+  expect(hash_compare).to be true
+end
