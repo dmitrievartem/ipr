@@ -4,9 +4,14 @@ Before('@ui') do |scenario|
     path_to_browser = 'D:\Ruby\RubyMine 2020.3.1\RubymineProjects\ipr\features\support\utils\GoogleChromePortable\App\Chrome-bin\chrome.exe'
   else
     path_to_browser = 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
-    path_to_browser = Dir.pwd + 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
-    p 'PWDPWDPWDPWDPWDPWDPWDPWDPWDPWDPWDPWDPWDPWDPWDPWDPWD'
+    path_to_browser = Dir.pwd + '/features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
+    path_to_browser["C:"] = "/c"
   end
+  p File.expand_path('/features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe')
+  path = File.join(Dir.pwd,'features/support/utils/GoogleChromePortable/App/Chrome-bin','chrome.exe')
+  p path
+  path["D:"] = "/d"
+  p path
   # попробовать поменять слэши
   # ПРОВЕРИТЬ
   #

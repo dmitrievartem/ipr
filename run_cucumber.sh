@@ -17,6 +17,6 @@ fi
 export LANG=C.UTF-8 && locale
 
 bundler install
-
+pwd
 bundle exec cucumber --tags ${TAGS} -f pretty -f json --out report_files/report.json
 #printenv
