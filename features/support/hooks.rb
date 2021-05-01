@@ -8,11 +8,11 @@ Before('@ui') do |scenario|
   # попробовать поменять слэши
   # ПРОВЕРИТЬ
   #
-  options = Selenium::WebDriver::Chrome::Options.new(binary: path_to_browser)
-  @browser = Selenium::WebDriver.for :chrome, options: options
-  @browser.manage.window.maximize
-  @browser.manage.timeouts.implicit_wait = 5
-  # @browser = nil
+  # options = Selenium::WebDriver::Chrome::Options.new(binary: path_to_browser)
+  # @browser = Selenium::WebDriver.for :chrome, options: options
+  # @browser.manage.window.maximize
+  # @browser.manage.timeouts.implicit_wait = 5
+  @browser = nil
   if @browser == nil
     skip_this_scenario
   end
