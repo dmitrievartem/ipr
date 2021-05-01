@@ -6,7 +6,7 @@ Before('@ui') do |scenario|
     path_to_browser = 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
     path_to_browser = Dir.pwd + '/features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
     p path_to_browser
-    path_to_browser["C:"] = "/c"
+    path_to_browser["C:"]= "/c"
   end
   p File.expand_path('/features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe')
   path = File.join(Dir.pwd,'features/support/utils/GoogleChromePortable/App/Chrome-bin','chrome.exe')
