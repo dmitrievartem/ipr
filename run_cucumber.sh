@@ -17,8 +17,6 @@ fi
 export LANG=C.UTF-8 && locale
 
 bundler install
-pwd
-cd features/support/utils/GoogleChromePortable/App/Chrome-bin
-ls -la
+
 bundle exec cucumber --tags ${TAGS} -f pretty -f json --out report_files/report.json
 #printenv
