@@ -46,11 +46,13 @@
       | pending   |
       | sold      |
 
+
   Структура сценария: Запрос на поиск животных по невалидному статусу возвращет код ответа 400
     * Отправил GET запрос на URL `https://petstore.swagger.io/v2/pet/findByStatus` c query параметрами:
       | key    | value    |
       | status | <status> |
     * Убедился, что код REST ответа = `400`
+    * Убедился, что в REST ответе поле `message` равно `Invalid status value`
 
     Примеры:
       | status         |

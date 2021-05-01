@@ -27,13 +27,15 @@ end
 
 After('@ui') do |scenario|
   if scenario.failed?
-    #         еСЛИ БРАУЗЕР nil, то не выполнять код
+    # ЕСЛИ БРАУЗЕР nil, то не выполнять код
     # делать отчет если сборка success
     # запуск по расписанию
     # Post User
     # Post list User
-    add_screenshot
-    add_browser_logs
+    if @browser != nil
+      add_screenshot
+      add_browser_logs
+    end
   end
   @browser.quit
 end

@@ -5,7 +5,7 @@ When(/^Отправил DELETE запрос на URL `(.*)` c сохраненн
 end
 
 Then(/^Убедился, что нет заказа с сохраненным id$/) do
-  step "Отправил GET запрос на URL `https://petstore.swagger.io/v2/pet` c path параметром: `#{@saved_order_id}`"
+  step "Отправил GET запрос на URL `https://petstore.swagger.io/v2/store/order` c path параметром: `#{@saved_order_id}`"
   step "Убедился, что код REST ответа = `404`"
   step "Распарсил JSON ответ"
   step "Убедился, что в REST ответе поле `message` равно `Order not found`"
