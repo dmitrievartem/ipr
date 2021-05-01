@@ -1,4 +1,4 @@
-Before('@ui') do
+Before('@ui') do |scenario|
   Selenium::WebDriver::Chrome::Service.driver_path = 'chromedriver.exe'
   if ENV['ABSOLUTE_PATH']
     path_to_browser = 'D:\Ruby\RubyMine 2020.3.1\RubymineProjects\ipr\features\support\utils\GoogleChromePortable\App\Chrome-bin\chrome.exe'
@@ -7,10 +7,16 @@ Before('@ui') do
   end
   # попробовать поменять слэши
   # ПРОВЕРИТЬ
-  options = Selenium::WebDriver::Chrome::Options.new(binary: path_to_browser)
-  @browser = Selenium::WebDriver.for :chrome, options: options
-  @browser.manage.window.maximize
-  @browser.manage.timeouts.implicit_wait = 5
+  #
+  # options = Selenium::WebDriver::Chrome::Options.new(binary: path_to_browser)
+  # @browser = Selenium::WebDriver.for :chrome, options: options
+  # @browser.manage.window.maximize
+  # @browser.manage.timeouts.implicit_wait = 5
+  @browser = nil
+  if @browser == nil
+    skip_this_scenario
+  end
+
 end
 
 Before do |scenario|
@@ -32,12 +38,12 @@ After('@ui') do |scenario|
     # запуск по расписанию
     # Post User
     # Post list User
-    if @browser != nil
-      add_screenshot
-      add_browser_logs
-    end
+    add_screenshot
+    add_browser_logs
   end
-  @browser.quit
+  if @browser != nil
+    @browser.quit
+  end
 end
 
 After('not @ui') do |scenario|
