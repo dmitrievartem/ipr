@@ -5,14 +5,12 @@ Before('@ui') do |scenario|
   else
     path_to_browser = 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
     path_to_browser = Dir.pwd + '/features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
+    p 'BEFORE'
     p path_to_browser
     path_to_browser["C:"]= "/c"
+    p 'AFTER'
+    p path_to_browser
   end
-  p File.expand_path('/features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe')
-  path = File.join(Dir.pwd,'features/support/utils/GoogleChromePortable/App/Chrome-bin','chrome.exe')
-  p path
-  path["D:"] = "/d"
-  p path
   # попробовать поменять слэши
   # ПРОВЕРИТЬ
   #
