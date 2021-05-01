@@ -3,7 +3,7 @@ Before('@ui') do |scenario|
   if ENV['ABSOLUTE_PATH'] == true
     path_to_browser = 'D:\Ruby\RubyMine 2020.3.1\RubymineProjects\ipr\features\support\utils\GoogleChromePortable\App\Chrome-bin\chrome.exe'
   else
-    path_to_browser = './features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
+    path_to_browser = 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
     # path_to_browser = Dir.pwd + '/features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
     # p 'BEFORE'
     # p path_to_browser
