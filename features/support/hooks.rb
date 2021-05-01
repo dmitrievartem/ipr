@@ -1,18 +1,18 @@
 Before('@ui') do |scenario|
   Selenium::WebDriver::Chrome::Service.driver_path = 'chromedriver.exe'
-  if ENV['ABSOLUTE_PATH']
+  if ENV['ABSOLUTE_PATH'] == true
     path_to_browser = 'D:\Ruby\RubyMine 2020.3.1\RubymineProjects\ipr\features\support\utils\GoogleChromePortable\App\Chrome-bin\chrome.exe'
   else
-    path_to_browser = 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
+    path_to_browser = 'features\support\utils\GoogleChromePortable\App\Chrome-bin\chrome.exe'
   end
   # попробовать поменять слэши
   # ПРОВЕРИТЬ
   #
-  # options = Selenium::WebDriver::Chrome::Options.new(binary: path_to_browser)
-  # @browser = Selenium::WebDriver.for :chrome, options: options
-  # @browser.manage.window.maximize
-  # @browser.manage.timeouts.implicit_wait = 5
-  @browser = nil
+  options = Selenium::WebDriver::Chrome::Options.new(binary: path_to_browser)
+  @browser = Selenium::WebDriver.for :chrome, options: options
+  @browser.manage.window.maximize
+  @browser.manage.timeouts.implicit_wait = 5
+  # @browser = nil
   if @browser == nil
     skip_this_scenario
   end
