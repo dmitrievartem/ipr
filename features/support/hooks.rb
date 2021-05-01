@@ -5,18 +5,19 @@ Before('@ui') do |scenario|
   else
     path_to_browser = 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
     path_to_browser = Dir.pwd + '/features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe'
-    path_to_browser = File.join(File.expand_path(Dir.pwd), 'features/support/utils/GoogleChromePortable/App/Chrome-bin/chrome.exe')
+    path_to_browser = File.join(File.expand_path(Dir.pwd), 'features/support/utils/GoogleChromePortable/App/Chrome-bin')
     # p 'BEFORE'
     # p path_to_browser
     # path_to_browser["C:"]= "/c"
     # p 'AFTER'
-    # p path_to_browser
+    # p path_to_browser#
+    # D:\Program Files\Git\bin\bash.exe
   end
 
   # попробовать поменять слэши
   # ПРОВЕРИТЬ
   #
-  options = Selenium::WebDriver::Chrome::Options.new(binary: path_to_browser.to_s)
+  options = Selenium::WebDriver::Chrome::Options.new(binary_location: path_to_browser.to_s)
   @browser = Selenium::WebDriver.for :chrome, options: options
   @browser.manage.window.maximize
   @browser.manage.timeouts.implicit_wait = 5
