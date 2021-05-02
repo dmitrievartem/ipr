@@ -1,7 +1,7 @@
 # encoding: UTF-8
 # language: ru
 
-@all @user
+@all @createWithList
 Функционал: Создание списка пользователей. https://petstore.swagger.io/#/user/createUsersWithListInput
 
 
