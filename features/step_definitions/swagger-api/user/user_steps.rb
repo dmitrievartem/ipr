@@ -13,7 +13,7 @@ When(/^Отправил POST запрос для создания пользов
   pp @response.body.to_s
 end
 
-Then(/^Запомнил id и username созданного пользователя$/) do
+Then(/^Запомнил id и username созданного пользователя из запроса$/) do
   @saved_user_id = @response["message"]
   p "saved_user_id: #{@saved_user_id}"
   @saved_username = @payload_hash["username"]

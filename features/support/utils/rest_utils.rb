@@ -37,11 +37,11 @@ end
 def log_request(request)
   Kernel.puts 'REQUEST LOG'
   Kernel.puts 'URL: '
-  pp request[:url]
+  pp request[:url].to_s
   Kernel.puts 'PAYLOAD: '
-  p request[:payload].class
+  p request[:payload].to_s
   Kernel.puts 'HEADERS: '
-  pp request[:headers]
+  pp request[:headers].to_s
   returned_value = 'REQUEST LOG' + "\n" + 'URL: ' + request[:url].to_s + "\n"
   returned_value += 'PAYLOAD: ' + request[:payload].to_s + "\n"
   returned_value += 'HEADERS: ' + request[:headers].to_s + "\n"
