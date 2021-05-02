@@ -55,8 +55,8 @@ def log_response(response = {})
   Kernel.puts 'HEADERS: '
   pp response.headers
   Kernel.puts 'BODY: '
-  json_response =  JSON.parse response
-  pp json_response
+  # json_response =  JSON.parse response
+  # pp json_response
   returned_value = 'RESPONSE LOG' + "\n" + 'CODE: ' + response.code.to_s + "\n"
   returned_value += 'HEADERS: ' + response.headers.to_s + "\n"
   returned_value += 'BODY: ' + response.body.to_s + "\n"

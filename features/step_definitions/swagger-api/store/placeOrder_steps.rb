@@ -49,7 +49,7 @@ When(/^Убедился, что заказ в ответе соответств�
   hash_compare = transformed_payload_hash.eql?(@response)
   if hash_compare == false
     p 'REQUEST ORDER: '
-    pp @payload_hash.deep_transform_keys(&:to_s)
+    pp transformed_payload_hash
     p 'RESPONSE ORDER:'
     pp @response
   end

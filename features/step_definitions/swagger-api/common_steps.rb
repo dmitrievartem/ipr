@@ -121,6 +121,12 @@ end
 When(/^Убедился, что животное в ответе соответствует запросу по сохраненному id$/) do
   @payload_hash[:id] = @saved_pet_id
   hash_compare = @payload_hash.deep_transform_keys(&:to_s).eql?(@response)
+  if hash_compare == false
+    p 'REQUEST ORDER: '
+    pp @payload_hash.deep_transform_keys(&:to_s)
+    p 'RESPONSE ORDER:'
+    pp @response
+  end
   expect(hash_compare).to be true
 end
 
@@ -131,4 +137,7 @@ When(/^Убедился, что животное в ответе НЕ соотв
 end
 
 Then(/^Вывод JSON ответа$/) do
+  p '!!!!!!!!!!!!!'
+  pp @payload_hash
+  pp @response
 end
