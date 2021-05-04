@@ -1,0 +1,2 @@
+[0425/165905.702:ERROR:main_dll_loader_win.cc(109)] Failed to load Chrome DLL from D:\Ruby\RubyMine 2020.3.1\RubymineProjects\ipr\features\support\GoogleChromePortable\App\Chrome-bin\chrome.dll: Не найден указанный модуль. (0x7E)
+[0428/111927.100:ERROR:registration_protocol_win.cc(102)] CreateFile: Не удается найти указанный файл. (0x2)

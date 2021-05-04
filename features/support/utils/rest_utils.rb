@@ -1,35 +1,68 @@
-RestClient.add_before_execution_proc do |params|
-  params[:verify_ssl] = false
-end
-
-def send_get(path, headers = {})
-  url = path
-  RestClient::Request.execute(method: :get, url: url, headers: headers, verify_ssl: false) do |response, _request, _result|
+def send_get(url, headers = {})
+  @request = { url: url, headers: headers, payload: {} }
+  log_request(@request)
+  RestClient::Request.execute(method: :get, url: url, headers: headers) do |response|
     @response = response
-    case response.code
-    when 301, 302, 307
-      @response = response.follow_redirection
-    else
-      @response = response
-    end
   end
 end
 
 def send_post(url, payload, headers = {})
-  RestClient::Request.execute(method: :post, url: url, headers: headers, payload: payload, verify_ssl: false) do |response, _code|
+  @request = {url: url, headers: headers, payload: payload}
+  log_request(@request)
+  RestClient::Request.execute(method: :post, url: url, headers: headers, payload: payload) do |response|
     @response = response
+    log_response(@response)
   end
   @response
 end
 
-def send_delete(path, headers = {})
-  RestClient::Request.execute(method: :delete, url: path, headers: headers, verify_ssl: false) do |response, _request, _result|
+def send_put(url, payload, headers = {})
+  @request = {url: url, headers: headers, payload: payload}
+  log_request(@request)
+  RestClient::Request.execute(method: :put, url: url, headers: headers, payload: payload) do |response|
     @response = response
-    case response.cod
-    when 301, 302, 307
-      @response = response.follow_redirection
-    else
-      @response = response
-    end
+    log_response(response)
   end
+  @response
+end
+
+def send_delete(url, headers = {})
+  @request = {url: url, headers: headers, payload: {} }
+  log_request(@request)
+  RestClient::Request.execute(method: :delete, url: url, headers: headers) do |response|
+    @response = response
+  end
+end
+
+def log_request(request)
+  Kernel.puts 'REQUEST LOG'
+  Kernel.puts 'URL: '
+  pp request[:url].to_s
+  Kernel.puts 'PAYLOAD: '
+  p request[:payload].to_s
+  Kernel.puts 'HEADERS: '
+  pp request[:headers].to_s
+  returned_value = 'REQUEST LOG' + "\n" + 'URL: ' + request[:url].to_s + "\n"
+  returned_value += 'PAYLOAD: ' + request[:payload].to_s + "\n"
+  returned_value += 'HEADERS: ' + request[:headers].to_s + "\n"
+  returned_value
+end
+
+def log_response(response = {})
+  Kernel.puts 'RESPONSE LOG'
+  Kernel.puts 'CODE: '
+  pp response.code
+  Kernel.puts 'HEADERS: '
+  pp response.headers
+  Kernel.puts 'BODY: '
+  # json_response =  JSON.parse response
+  # pp json_response
+  returned_value = 'RESPONSE LOG' + "\n" + 'CODE: ' + response.code.to_s + "\n"
+  returned_value += 'HEADERS: ' + response.headers.to_s + "\n"
+  returned_value += 'BODY: ' + response.body.to_s + "\n"
+  returned_value
+end
+
+def hash_diff(hash1, hash2)
+  hash1.keys.each { |key| puts key if hash1[key] != hash2[key] }
 end
