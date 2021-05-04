@@ -44,7 +44,7 @@ Then(/^Удалил пользователся по сохраненному use
   step "Убедился, что код REST ответа = `200`"
 end
 
-Then(/^Убедился, что удалил пользователся по сохраненному username$/) do
+Then(/^Убедился, что удалил пользователя по сохраненному username$/) do
   step "Отправил GET запрос на URL `https://petstore.swagger.io/v2/user` c path параметром: `#{@saved_username}`"
   step "Убедился, что код REST ответа = `404`"
 end

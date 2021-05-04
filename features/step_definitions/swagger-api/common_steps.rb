@@ -137,7 +137,8 @@ When(/^Убедился, что животное в ответе НЕ соотв
 end
 
 Then(/^Вывод JSON ответа$/) do
-  p '!!!!!!!!!!!!!'
-  pp @payload_hash
-  pp @response
+  p '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+  p @response.body.class
+  pp @response.body
+  RestClient::Response
 end

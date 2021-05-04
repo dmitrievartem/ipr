@@ -12,7 +12,6 @@ Before('@ui') do |scenario|
   if @browser == nil
     skip_this_scenario
   end
-
 end
 
 Before do |scenario|
