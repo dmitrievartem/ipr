@@ -1,13 +1,13 @@
 When(/^Отправил POST запрос для создания пользователя на URL `(.*)` c параметрами:$/) do |url, table|
   headers_hash = { 'Content-Type' => 'application/json', :Accept => 'application/json'}
-  p '!!!!!!!!!!!!!!!!!!!!!'
+
   @payload_hash = Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
   table.hashes.each { |i| eval "@payload_hash#{i[:key]} = '#{i[:value]}'" }
   @payload_hash[:id] = @payload_hash[:id].to_i
   @payload_hash[:userStatus] = @payload_hash[:userStatus].to_i
+  @payload_hash[:username] = rand.to_s
   @payload_hash = @payload_hash.deep_transform_keys(&:to_s)
-  p '!!!!!!!!!!!!'
-  pp @payload_hash
+
   json_payload_hash = @payload_hash.to_json
   @response = send_post(url, json_payload_hash, headers_hash)
   pp @response.body.to_s

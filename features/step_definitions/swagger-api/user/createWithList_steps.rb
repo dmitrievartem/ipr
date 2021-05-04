@@ -92,7 +92,6 @@ When(/^Добавил в список невалидного пользоват�
   table.hashes.each { |i| eval "user_hash#{i[:key]} = '#{i[:value]}'" }
   user_hash = user_hash.deep_transform_keys(&:to_s)
   @payload_hash << user_hash
-  @username_arr << user_hash["username"]
 end
 
 When(/^Отправил POST запрос с подготовленным списком пользователей на URL `(.*)`$/) do |url|
